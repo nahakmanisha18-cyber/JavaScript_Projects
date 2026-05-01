@@ -1,0 +1,152 @@
+@import url('https://fonts.cdnfonts.com/css/digital-7-mono');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Digital-7 Mono', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center,
+            #04131d 0%,
+            #01070d 45%,
+            #000000 100%);
+}
+
+/* Background Neon Glow */
+body::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(0, 255, 255, 0.20),
+            rgba(0, 170, 255, 0.10),
+            transparent 70%);
+    filter: blur(80px);
+    animation: glow 6s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+}
+
+.clock-container {
+    position: relative;
+    padding: 50px 70px;
+    border-radius: 25px;
+    background: rgba(0, 10, 20, 0.85);
+    border: 2px solid rgba(0, 255, 255, 0.25);
+    backdrop-filter: blur(25px);
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.20),
+        0 0 50px rgba(0, 255, 255, 0.20),
+        0 0 100px rgba(0, 180, 255, 0.15),
+        inset 0 0 30px rgba(255, 255, 255, 0.03);
+}
+
+.clock {
+    position: relative;
+    text-align: center;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 190px;
+    color: #7df9ff;
+    letter-spacing: 8px;
+    text-shadow:
+        0 0 1px #00ffff,
+        0 0 15px #00ffff,
+        0 0 30px #00e5ff,
+        0 0 60px #00bfff,
+        0 0 120px #0099ff;
+}
+
+.colon {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.15;
+    }
+}
+
+.ampm {
+    position: absolute;
+    top: 18px;
+    right: -45px;
+    font-size: 2rem;
+    color: #b8ffff;
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #00bfff;
+}
+
+.days {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.days span {
+    padding: 8px 15px;
+    font-size: 1rem;
+    color: rgba(125, 249, 255, 0.35);
+    border: 1px solid rgba(0, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.4s ease;
+}
+
+.days span.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #00ffff, #008cff63);
+    border-color: transparent;
+    box-shadow:
+        0 0 15px #00ffff,
+        0 0 35px rgba(0, 140, 255, 0.7);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .time {
+        font-size: 4.5rem;
+        gap: 8px;
+        letter-spacing: 4px;
+    }
+
+    .ampm {
+        top: 10px;
+        right: -18px;
+        font-size: 1rem;
+    }
+
+    .clock-container {
+        padding: 30px 25px;
+    }
+
+    .days span {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+}
