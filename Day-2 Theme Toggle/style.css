@@ -1,0 +1,72 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+    transition: 0.3s;
+}
+
+body.dark {
+    background: #0f172a;
+}
+
+.card {
+    width: 320px;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+body.dark .card {
+    background: rgba(30, 41, 59, 0.85);
+    color: #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-btn {
+    width: 80px;
+    height: 40px;
+    background: #e2e8f0;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+}
+
+body.dark .toggle-btn {
+    background: #334155;
+}
+
+.circle {
+    width: 34px;
+    height: 34px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .circle {
+    transform: translateX(40px);
+    background: #0f172a;
+}
+
+.circle i {
+    font-size: 18px;
+}
+
+.circle .bi-sun-fill {
+    color: gold;
+}
+
+body.dark .circle .bi-moon-fill {
+    color: #818cf8;
+}
