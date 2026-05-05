@@ -1,0 +1,47 @@
+/* ═══════════════════════════════════════════════════
+   media.css — Responsive Overrides
+═══════════════════════════════════════════════════ */
+
+/* ── Tablet & below (< 1200px) ── */
+@media (max-width: 1199.98px) {
+
+    /* Hide the desktop collapse menu completely on mobile —
+       we use our custom sidebar instead */
+    #mainMenu {
+        display: none !important;
+    }
+
+    /* Show mobile controls (theme btn + hamburger) */
+    .mobile-controls {
+        display: flex !important;
+    }
+
+    /* Sidebar width smaller on small phones */
+    .sidebar {
+        width: 270px;
+    }
+}
+
+/* ── Small phones (< 400px) ── */
+@media (max-width: 399px) {
+    .sidebar {
+        width: 100%;
+        border-left: none;
+    }
+
+    .text-logo {
+        font-size: 22px;
+    }
+}
+
+/* ── Desktop (≥ 1200px): make sure sidebar is hidden ── */
+@media (min-width: 1200px) {
+    .mobile-controls {
+        display: none !important;
+    }
+
+    .sidebar,
+    .sidebar-overlay {
+        display: none !important;
+    }
+}
