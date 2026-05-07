@@ -1,0 +1,898 @@
+/* ===========================
+   RESET & BASE
+=========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #12111e;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+.back-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* IMAGE */
+.back-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* OVERLAY */
+.back-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(rgba(80, 70, 180, 0.6),
+            rgba(120, 60, 180, 0.7));
+
+    z-index: 1;
+}
+
+/* 🔥 TEXT ON IMAGE */
+.back-img h2 {
+    position: absolute;
+    top: 26%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+    z-index: 2;
+    text-transform: uppercase;
+    /* 👈 sabse upar */
+}
+
+.back-img i {
+    position: absolute;
+    top: 26%;
+    right: 30%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+
+    z-index: 2;
+    /* 👈 sabse upar */
+}
+/* ===========================
+   CONTAINER
+=========================== */
+.container {
+    background: #222033;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    width: 100%;
+    max-width: 540px;
+    z-index: 100;
+    margin-top: 100px;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #c9c9c9;
+    margin-top: 3px;
+}
+
+.clear-all-btn {
+    font-size: 13px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #f5c0b0;
+    background: #fff5f2;
+    color: #e05c3a;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.15s, transform 0.1s;
+    white-space: nowrap;
+}
+
+.clear-all-btn:hover {
+    background: #ffe0d8;
+}
+
+.clear-all-btn:active {
+    transform: scale(0.97);
+}
+
+/* ===========================
+   INPUT ROW
+=========================== */
+.input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.input-row input {
+    flex: 1;
+    height: 44px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: #12111e;
+    font-size: 15px;
+    color: #ffffff;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.input-row input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.input-row input::placeholder {
+    color: #bbb;
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.select-wrapper i {
+    position: absolute;
+    right: 10px;
+    color: #ffffff;
+    font-size: 12px;
+    pointer-events: none;
+    /* click through hoga, select kaam karega */
+}
+
+#priority-select {
+    height: 44px;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    background: #12111e;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0 32px 0 10px;
+    /* right mein space icon ke liye */
+}
+
+#priority-select:focus {
+    border-color: #667eea;
+}
+
+#add-btn {
+    height: 44px;
+    padding: 0 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s, transform 0.1s;
+    font-family: inherit;
+}
+
+#add-btn:hover {
+    opacity: 0.88;
+}
+
+#add-btn:active {
+    transform: scale(0.97);
+}
+
+/* ===========================
+   SEARCH ROW
+=========================== */
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 0 14px;
+    height: 40px;
+    margin-bottom: 1.25rem;
+    transition: border 0.2s;
+}
+
+.search-row:focus-within {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+}
+
+.search-icon .fa-magnifying-glass {
+    font-size: 15px;
+    color: white;
+}
+
+.search-row input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #ffffff;
+    font-family: inherit;
+    background: transparent;
+}
+
+.search-row input::placeholder {
+    color: #bbb;
+}
+
+/* ===========================
+   STATS
+=========================== */
+.stats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+}
+
+.stat {
+    flex: 1;
+    background: #12111e;
+    border-radius: 10px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat .num {
+    font-size: 22px;
+    font-weight: 700;
+    color: #474758;
+}
+
+.stat .num.blue {
+    color: #667eea;
+}
+
+.stat .num.green {
+    color: #1D9E75;
+}
+
+.stat .num.orange {
+    color: #e05c3a;
+}
+
+.stat .lbl {
+    font-size: 11px;
+    color: #999;
+    text-align: center;
+}
+
+/* ===========================
+   PROGRESS BAR
+=========================== */
+.progress-wrap {
+    margin-bottom: 1.25rem;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+#progress-percent {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+    width: 0%;
+}
+
+/* ===========================
+   FILTER ROW
+=========================== */
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid #e0e0e0;
+    background: transparent;
+    color: #888;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    background: #f0f2ff;
+    color: #000000;
+}
+
+.filter-btn.active {
+    background: #1a1a2e;
+    color: #fff;
+    border-color: #1a1a2e;
+}
+
+.sort-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.sort-wrapper i {
+    position: absolute;
+    right: 10px;
+    color: #ffffff;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+#sort-select {
+    height: 36px;
+    padding: 0 32px 0 10px;
+    /* ← right mein space add kiya */
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    background: #12111e;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    transition: border 0.2s;
+    appearance: none;
+    /* ← browser arrow hatao */
+    -webkit-appearance: none;
+    /* ← Safari ke liye */
+}
+
+#sort-select:focus {
+    border-color: #667eea;
+}
+
+/* ===========================
+   TASK LIST
+=========================== */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ===========================
+   TASK ITEM
+=========================== */
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #12111e;
+    border: none;
+    border-radius: 12px;
+    transition: border 0.15s, box-shadow 0.15s, opacity 0.2s;
+    animation: fadeIn 0.2s ease;
+    border-left: 4px solid #ddd;
+}
+
+.task-item:hover {
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.1);
+}
+
+.task-item.done {
+    opacity: 0.5;
+    background: #12111e;
+}
+
+/* Priority left borders */
+.task-item.priority-high {
+    border-left-color: #e05c3a;
+}
+
+.task-item.priority-medium {
+    border-left-color: #f0a500;
+}
+
+.task-item.priority-low {
+    border-left-color: #1D9E75;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   CHECKBOX BUTTON
+=========================== */
+.check-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: transparent;
+    transition: background 0.15s, border 0.15s, color 0.15s;
+}
+
+.task-item.done .check-btn {
+    background: #1D9E75;
+    border-color: #1D9E75;
+    color: #fff;
+}
+
+.check-btn:hover {
+    border-color: #1D9E75;
+    color: #bbb;
+}
+
+/* ===========================
+   TASK INFO
+=========================== */
+.task-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.task-text {
+    font-size: 15px;
+    color: #ffffff;
+    word-break: break-word;
+}
+
+.task-item.done .task-text {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.task-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.priority-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.priority-badge.high {
+    background: #fff0ec;
+    color: #e05c3a;
+}
+
+.priority-badge.medium {
+    background: #fff8e1;
+    color: #c98a00;
+}
+
+.priority-badge.low {
+    background: #e8f8f2;
+    color: #1D9E75;
+}
+
+.task-date {
+    font-size: 11px;
+    color: #bbb;
+}
+.fa-trophy{
+    color: gold;
+}
+.fa-circle-check{
+    color: #1D9E75;
+}
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
+.task-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+}
+
+.task-item:hover .task-actions {
+    opacity: 1;
+}
+
+
+.action-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.action-btn:active {
+    transform: scale(0.92);
+}
+
+.edit-btn {
+    background: #f0f2ff;
+}
+.del-btn {
+    background: #d6aca3;
+    color: rgb(255, 0, 0);
+    font-weight: 900;
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+.empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #bbb;
+    font-size: 14px;
+}
+
+.empty .empty-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* ===========================
+   FOOTER ROW
+=========================== */
+.footer-row {
+    margin-top: 1rem;
+    min-height: 24px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.clear-done-btn {
+    font-size: 15px;
+    font-weight: 500;
+    color: #e05c3a;
+    background: rgb(255 245 242);
+    padding: 10px 8px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: 0.2px solid #e05c3a;
+    cursor: pointer;
+    transition: color 0.15s;
+
+}
+.clear-done-btn:active {
+    transform: scale(0.97);
+}
+
+.clear-done-btn:hover {
+    background: #ffe0d8;
+    transition: 0.3s;
+}
+
+/* ===========================
+   MODAL
+=========================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.556);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal {
+    background: #222033;
+    border-radius: 16px;
+    padding: 1.75rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    transform: scale(0.95);
+    transition: transform 0.2s;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.modal input,
+.modal select {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border: none;
+    background-color: #12111e;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #ffffff;
+    outline: none;
+    margin-bottom: 12px;
+    font-family: inherit;
+    transition: border 0.2s;
+}
+
+.modal input:focus,
+.modal select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.modal-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btn-cancel {
+    flex: 1;
+    height: 42px;
+    border-radius: 10px;
+    border:none;
+    background: #12111e;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+}
+
+.btn-cancel:hover {
+    background: #13121fe5;
+}
+
+.btn-save {
+    flex: 1;
+    height: 42px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn-save:hover {
+    opacity: 0.88;
+}
+
+.btn-save:active {
+    transform: scale(0.97);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 480px) {
+    .container {
+        padding: 1.25rem;
+    }
+ 
+    .input-row {
+        flex-wrap: wrap;
+    }
+
+    .input-row input {
+        width: 100%;
+    }
+
+    #priority-select,
+    #add-btn {
+        flex: 1;
+    }
+
+    .stats {
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        min-width: calc(50% - 5px);
+    }
+}
+
+/* ===========================
+   LIGHT THEME
+=========================== */
+
+body.light {
+    background: #f4f7ff;
+}
+
+/* Main Container */
+body.light .container {
+    background: #ffffff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Heading */
+body.light h1,
+body.light .modal h2 {
+    color: #111;
+}
+
+body.light .subtitle,
+body.light .progress-info,
+body.light .task-date,
+body.light .lbl {
+    color: #666;
+}
+
+/* Inputs */
+body.light .input-row input,
+body.light #priority-select,
+body.light #sort-select,
+body.light .search-row,
+body.light .task-item,
+body.light .modal,
+body.light .modal input,
+body.light .modal select,
+body.light .btn-cancel,
+body.light .stat {
+    background: #e2e2e287;
+    color: #111;
+}
+
+/* Placeholder */
+body.light input::placeholder {
+    color: #777;
+}
+
+/* Search Icon */
+body.light .search-icon .fa-magnifying-glass,
+body.light .sort-wrapper i,
+body.light .select-wrapper i {
+    color: #333;
+}
+
+/* Task Text */
+body.light .task-text {
+    color: #111;
+}
+
+/* Filter Buttons */
+body.light .filter-btn {
+    border-color: #ccc;
+    color: #444;
+}
+
+body.light .filter-btn.active {
+    background: #91939b;
+    color: white;
+    border-color: #91939b;
+}
+
+/* Progress Bar */
+body.light .progress-bar {
+    background: #ddd;
+}
+
+/* Modal */
+body.light .modal {
+    background: white;
+}
+
+/* Cancel Button */
+body.light .btn-cancel {
+    background: #ececff;
+    color: #111;
+}
+
+/* Theme Icon */
+body.light .back-img i {
+    color: #fff;
+}
