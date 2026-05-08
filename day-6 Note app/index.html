@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Notes App</title>
+
+        <!-- Google Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+            rel="stylesheet" />
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+        <!-- External CSS -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <!-- ── Header ── -->
+            <header>
+                <h1>✨ My Notes</h1>
+                <p>Your ideas, beautifully organized</p>
+            </header>
+
+            <!-- ── Stats Bar ── -->
+            <div class="stats">
+                <div class="stat-badge">📝 Total: <span id="totalCount">0</span></div>
+                <div class="stat-badge">📌 Pinned: <span id="pinnedCount">0</span></div>
+                <div class="stat-badge">🏷️ Tags: <span id="tagCount">0</span></div>
+            </div>
+
+            <!-- ── Toolbar (Search + Filter) ── -->
+            <div class="toolbar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search notes..." oninput="renderNotes()" />
+                </div>
+                <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+                <button class="filter-btn" onclick="setFilter('pinned', this)">📌 Pinned</button>
+            </div>
+
+            <!-- ── Note Editor ── -->
+            <div class="editor-card">
+                <div class="editor-top">
+                    <input type="text" id="noteTitle" placeholder="✏️ Note title..." maxlength="60" />
+                    <div class="color-picker" id="colorPicker"></div>
+                </div>
+                <textarea id="noteBody" placeholder="Write your thoughts here... 💭"></textarea>
+                <div class="tag-input-row">
+                    <input type="text" id="tagInput" placeholder="+ Add tag & press Enter"
+                        onkeydown="handleTagInput(event)" />
+                    <div class="tags-display" id="currentTags"></div>
+                </div>
+                <div class="editor-actions">
+                    <button class="btn btn-secondary" onclick="clearEditor()">Clear</button>
+                    <button class="btn btn-primary" onclick="saveNote()">💾 Save Note</button>
+                </div>
+            </div>
+
+            <!-- ── Notes Section ── -->
+            <div class="section-label" id="notesLabel">All Notes</div>
+            <div class="notes-grid" id="notesGrid"></div>
+
+        </div>
+
+        <!-- ── Full Note Modal ── -->
+        <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+            <div class="modal" id="modalBox">
+                <button class="modal-close"
+                    onclick="document.getElementById('modalOverlay').classList.remove('open')">✕</button>
+                <h2 id="modalTitle"></h2>
+                <div class="full-body" id="modalBody"></div>
+                <div class="tags-display" id="modalTags"></div>
+            </div>
+        </div>
+
+        <!-- External JS -->
+        <script src="script.js"></script>
+
+    </body>
+
+</html>

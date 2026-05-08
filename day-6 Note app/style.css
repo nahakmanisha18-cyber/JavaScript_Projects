@@ -1,0 +1,745 @@
+/* ============================================
+   NOTES APP - style.css
+   ============================================ */
+
+:root {
+    --bg: #0f0c29;
+    --bg2: #1a1535;
+    --card: #1e1b3a;
+    --accent1: #ff6b6b;
+    --accent2: #feca57;
+    --accent3: #48dbfb;
+    --accent4: #ff9ff3;
+    --accent5: #54a0ff;
+    --accent6: #5f27cd;
+    --text: #f1f2f6;
+    --muted: #a29bce;
+    --border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --radius: 18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Animated Background */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(95, 39, 205, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(255, 107, 107, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 10%, rgba(72, 219, 251, 0.15) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Container ── */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+}
+
+/* ── Header ── */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeDown 0.6s ease;
+}
+
+header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent3), var(--accent4), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    line-height: 1.1;
+}
+
+header p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ── Stats Bar ── */
+.stats {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease 0.1s both;
+}
+
+.stat-badge {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 7px 18px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+    backdrop-filter: blur(10px);
+}
+
+.stat-badge span {
+    color: var(--accent2);
+    font-size: 1rem;
+}
+
+/* ── Toolbar (Search + Filters) ── */
+.toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s ease 0.2s both;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 13px 18px 13px 46px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    outline: none;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.search-box input:focus {
+    border-color: var(--accent3);
+    background: rgba(72, 219, 251, 0.08);
+}
+
+.search-icon {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: var(--muted);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-box input::placeholder {
+    color: var(--muted);
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--muted);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    border-color: var(--accent4);
+    background: rgba(255, 159, 243, 0.12);
+    color: var(--accent4);
+}
+
+/* ── Editor Card ── */
+.editor-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    animation: fadeUp 0.6s ease 0.3s both;
+    transition: border-color 0.3s;
+}
+
+.editor-card:focus-within {
+    border-color: rgba(95, 39, 205, 0.6);
+    box-shadow: 0 8px 40px rgba(95, 39, 205, 0.2);
+}
+
+.editor-top {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.editor-top input {
+    flex: 1;
+    min-width: 180px;
+    padding: 11px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.editor-top input:focus {
+    border-color: var(--accent5);
+}
+
+.editor-top input::placeholder {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+/* ── Color Picker ── */
+.color-picker {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.color-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+    position: relative;
+}
+
+.color-dot:hover {
+    transform: scale(1.2);
+}
+
+.color-dot.selected {
+    border-color: white;
+    transform: scale(1.2);
+}
+
+.color-dot.selected::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: 900;
+}
+
+/* ── Textarea ── */
+textarea {
+    width: 100%;
+    min-height: 130px;
+    resize: vertical;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.6;
+    outline: none;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+}
+
+textarea:focus {
+    border-color: var(--accent5);
+}
+
+textarea::placeholder {
+    color: var(--muted);
+}
+
+/* ── Tag Input ── */
+.tag-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.tag-input-row input {
+    flex: 1;
+    min-width: 120px;
+    padding: 9px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.tag-input-row input:focus {
+    border-color: var(--accent2);
+}
+
+.tag-input-row input::placeholder {
+    color: var(--muted);
+}
+
+.tags-display {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+}
+
+.tag:hover {
+    opacity: 0.75;
+}
+
+/* ── Buttons ── */
+.editor-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 11px 28px;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent6), var(--accent5));
+    color: white;
+    box-shadow: 0 4px 20px rgba(95, 39, 205, 0.4);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+}
+
+/* ── Section Label ── */
+.section-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeUp 0.6s ease 0.4s both;
+}
+
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* ── Notes Grid ── */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+/* ── Note Card ── */
+.note-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1.5px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.note-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.note-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.note-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.note-title {
+    font-family: "Amarante", serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--text);
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.note-actions {
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+}
+
+.note-card:hover .note-actions {
+    opacity: 1;
+}
+
+.icon-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    color: var(--text);
+}
+
+.icon-btn:hover {
+    transform: scale(1.15);
+}
+
+.icon-btn.delete:hover {
+    background: rgba(255, 107, 107, 0.25);
+}
+
+.icon-btn.pin:hover {
+    background: rgba(254, 202, 87, 0.25);
+}
+
+.note-body {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    word-break: break-word;
+    max-height: 100px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+    mask-image: linear-gradient(to bottom, black 60%, transparent);
+    margin-bottom: 12px;
+}
+
+.note-tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.note-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.73rem;
+    color: rgba(162, 155, 206, 0.6);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.pinned-badge {
+    font-size: 0.7rem;
+    background: rgba(254, 202, 87, 0.15);
+    color: var(--accent2);
+    padding: 2px 9px;
+    border-radius: 50px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* ── Empty State ── */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    grid-column: 1 / -1;
+}
+
+.empty-state .emoji {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.empty-state h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: rgba(162, 155, 206, 0.5);
+    font-size: 0.9rem;
+}
+
+/* ── Toast Notification ── */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--accent6), var(--accent5));
+    color: white;
+    padding: 13px 24px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 32px rgba(95, 39, 205, 0.5);
+    z-index: 999;
+    animation: slideInRight 0.3s ease, fadeOut 0.4s ease 2s forwards;
+    pointer-events: none;
+}
+
+/* ── Modal ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal {
+    background: var(--bg2);
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 560px;
+    width: 100%;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.modal h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, var(--accent3), var(--accent4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.modal .full-body {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: rgba(255, 107, 107, 0.2);
+    color: var(--accent1);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+/* ── Animations ── */
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+    .notes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-top {
+        flex-direction: column;
+    }
+}
