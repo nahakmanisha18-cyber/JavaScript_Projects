@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ShopFilter — Product Filter UI (Dark Mode)</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <nav>
+            <a class="nav-brand" href="#">
+                <div class="icon-box"><i class="ti ti-shopping-bag"></i></div>
+                ShopFilter
+            </a>
+            <div class="nav-right">
+                <div class="nav-fav-count">
+                    <i class="ti ti-heart"></i>
+                    <span id="navFavCount">0</span> Saved
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="hero">
+                <h1>Browse <span>Products</span></h1>
+                <p>Search karo, filter karo, favourite save karo — sab kuch ek jagah</p>
+            </div>
+
+            <div class="search-wrap">
+                <i class="ti ti-search icon-left"></i>
+                <input type="text" id="searchInput" placeholder="Product ya category search karo..." />
+                <button class="clear-btn" id="clearBtn"><i class="ti ti-x"></i></button>
+            </div>
+
+            <div class="hist-row" id="histRow">
+                <span class="hist-label"><i class="ti ti-history"></i> Recent:</span>
+                <span id="histChips"></span>
+            </div>
+
+            <div class="cat-row" id="catRow"></div>
+            <div class="stats-grid" id="statsGrid"></div>
+
+            <div class="toolbar">
+                <div class="toolbar-left" id="countLabel"></div>
+                <div class="toolbar-right">
+                    <label for="sortSel">Sort:</label>
+                    <select id="sortSel">
+                        <option value="def">Default</option>
+                        <option value="pa">Price: Low → High</option>
+                        <option value="pd">Price: High → Low</option>
+                        <option value="az">Name A → Z</option>
+                        <option value="rating">Top Rated</option>
+                        <option value="fav">Favourites First</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid" id="grid"></div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
