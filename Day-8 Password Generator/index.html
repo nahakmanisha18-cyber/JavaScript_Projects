@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Password Generator</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap"
+            rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="header">
+                <span class="header-icon">🔐</span>
+                <h1>PassForge</h1>
+                <p>// SECURE PASSWORD GENERATOR //</p>
+            </div>
+
+            <div class="card">
+
+                <!-- Password Output -->
+                <div class="password-display" id="pwDisplay">
+                    <div class="password-text empty" id="pwText">Click GENERATE to create password...</div>
+                    <button class="copy-btn" id="copyBtn" title="Copy password" onclick="copyPassword()"><i class="fa-solid fa-clipboard"></i></button>
+                </div>
+
+                <!-- Strength -->
+                <div class="strength-wrap">
+                    <div class="strength-label">
+                        <span>Strength</span>
+                        <span class="strength-name" id="strengthName">—</span>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
+                </div>
+
+                <!-- Length -->
+                <div class="length-section">
+                    <div class="length-header">
+                        <span class="section-label">Password Length</span>
+                        <span class="length-value" id="lengthVal">16</span>
+                    </div>
+                    <input type="range" id="lengthSlider" min="4" max="64" value="16"
+                        oninput="updateLength(this.value)" />
+                </div>
+
+                <!-- Options -->
+                <div class="options-section">
+                    <div class="section-label">Character Types</div>
+                    <div class="options-grid">
+                        <div class="option-toggle active" id="opt-upper" onclick="toggleOption('upper')">
+                            <div class="toggle-box">✓</div>
+                            <div class="option-info">
+                                <span class="option-name">Uppercase</span>
+                                <span class="option-example">A B C D E</span>
+                            </div>
+                        </div>
+                        <div class="option-toggle active" id="opt-lower" onclick="toggleOption('lower')">
+                            <div class="toggle-box">✓</div>
+                            <div class="option-info">
+                                <span class="option-name">Lowercase</span>
+                                <span class="option-example">a b c d e</span>
+                            </div>
+                        </div>
+                        <div class="option-toggle active" id="opt-numbers" onclick="toggleOption('numbers')">
+                            <div class="toggle-box">✓</div>
+                            <div class="option-info">
+                                <span class="option-name">Numbers</span>
+                                <span class="option-example">0 1 2 3 4</span>
+                            </div>
+                        </div>
+                        <div class="option-toggle active" id="opt-symbols" onclick="toggleOption('symbols')">
+                            <div class="toggle-box">✓</div>
+                            <div class="option-info">
+                                <span class="option-name">Symbols</span>
+                                <span class="option-example">! @ # $ %</span>
+                            </div>
+                        </div>
+                        <div class="option-toggle" id="opt-ambiguous" onclick="toggleOption('ambiguous')">
+                            <div class="toggle-box"></div>
+                            <div class="option-info">
+                                <span class="option-name">Exclude Similar</span>
+                                <span class="option-example">i l 1 L 0 O</span>
+                            </div>
+                        </div>
+                        <div class="option-toggle" id="opt-norepeat" onclick="toggleOption('norepeat')">
+                            <div class="toggle-box"></div>
+                            <div class="option-info">
+                                <span class="option-name">No Repeat</span>
+                                <span class="option-example">unique chars</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Min Quantity Controls -->
+                <div class="qty-section">
+                    <div class="qty-card">
+                        <span class="qty-label">Min Numbers</span>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty('minNumbers', -1)">−</button>
+                            <span class="qty-value" id="minNumbers">1</span>
+                            <button class="qty-btn" onclick="changeQty('minNumbers', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="qty-card">
+                        <span class="qty-label">Min Symbols</span>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty('minSymbols', -1)">−</button>
+                            <span class="qty-value" id="minSymbols">1</span>
+                            <button class="qty-btn" onclick="changeQty('minSymbols', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions">
+                    <button class="btn btn-generate" onclick="generatePassword()">
+                        <span id="genIcon">⚡</span> GENERATE
+                    </button>
+                    <button class="btn btn-refresh" onclick="generatePassword()"><i class="bi bi-arrow-repeat"></i>Refresh</button>
+                    <button class="btn btn-clear" onclick="clearAll()"><i class="fa-solid fa-trash"></i> Clear</button>
+                </div>
+
+                <!-- History -->
+                <div class="history-section">
+                    <div class="history-header">
+                        <span class="section-label">Recent Passwords</span>
+                        <span style="font-size:0.7rem;color:var(--muted)" id="histCount">0 saved</span>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <div style="color:var(--muted);font-size:0.75rem;text-align:center;padding:12px;">
+                            No history yet...
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="toast" id="toast"></div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
