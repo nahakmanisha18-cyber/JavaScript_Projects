@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Search with Debounce</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+        <!-- ========== CSS ========== -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="card-wrap">
+
+            <!-- Header -->
+            <div class="header">
+                <h1><i class="ti ti-search" style="font-size:20px;vertical-align:-2px;margin-right:6px;"></i>Search with
+                    Debounce</h1>
+                <p>// API fires only after 600ms of inactivity</p>
+            </div>
+
+            <!-- Search Input -->
+            <div class="search-wrap">
+                <i class="ti ti-search search-icon"></i>
+                <input id="searchInput" type="text" placeholder="Search by name, role or tag..." autocomplete="off" />
+                <button class="clear-btn" id="clearBtn" aria-label="Clear search">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="dot" id="dot"></div>
+                <span class="status-text" id="statusText">ready — waiting for input</span>
+                <span class="timer-badge" id="timerBadge">600ms delay</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Results -->
+            <div class="results-label" id="resultsLabel"></div>
+            <div class="results-area" id="resultsArea">
+                <div class="empty-state">
+                    <i class="ti ti-database"></i>
+                    Start typing to search the database
+                </div>
+            </div>
+
+            <!-- Counters -->
+            <div class="counters">
+                <div class="counter-card">
+                    <div class="counter-num" id="keystrokeCount">0</div>
+                    <div class="counter-lbl">keystrokes</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-num purple" id="apiCallCount">0</div>
+                    <div class="counter-lbl">API calls fired</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-num green" id="savedCount">0</div>
+                    <div class="counter-lbl">calls saved</div>
+                </div>
+            </div>
+
+        </div><!-- end card-wrap -->
+
+        <!-- ========== JS ========== -->
+       <script src="script.js"></script>
+
+    </body>
+
+</html>
