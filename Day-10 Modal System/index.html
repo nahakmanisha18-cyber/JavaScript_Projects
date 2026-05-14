@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dark Modal System — Day 14</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="wrap">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Day 10 · Modal System
+                </div>
+                <h1>Dark Modal & Popup System</h1>
+                <p>5 modal types · animated toasts · 100% pure HTML, CSS & JS</p>
+            </div>
+
+            <!-- MODAL TRIGGER CARD -->
+            <div class="card">
+                <p class="card-label">Modal types — click to preview</p>
+                <div class="btn-grid">
+
+                    <button class="trig-btn" onclick="openModal('invite')">
+                        <span class="t-icon ic-purple"><i class="ti ti-user-plus"></i></span>
+                        Invite user
+                    </button>
+
+                    <button class="trig-btn" onclick="openModal('delete')">
+                        <span class="t-icon ic-red"><i class="ti ti-trash"></i></span>
+                        Delete
+                    </button>
+
+                    <button class="trig-btn" onclick="openModal('success')">
+                        <span class="t-icon ic-green"><i class="ti ti-circle-check"></i></span>
+                        Success
+                    </button>
+
+                    <button class="trig-btn" onclick="openModal('wizard')">
+                        <span class="t-icon ic-amber"><i class="ti ti-list-check"></i></span>
+                        Wizard
+                    </button>
+
+                    <button class="trig-btn" onclick="openModal('profile')">
+                        <span class="t-icon ic-blue"><i class="ti ti-user-circle"></i></span>
+                        Profile
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- TOAST TRIGGER CARD -->
+            <div class="card">
+                <p class="card-label">Toast notifications</p>
+                <div class="toast-row">
+                    <button class="toast-pill"
+                        onclick="fireToast('Saved!','Changes applied','#10b981','rgba(16,185,129,.15)','ti-circle-check')">
+                        <span class="tdot" style="background:#10b981"></span>Success
+                    </button>
+                    <button class="toast-pill"
+                        onclick="fireToast('Warning','Storage almost full','#f59e0b','rgba(245,158,11,.15)','ti-alert-circle')">
+                        <span class="tdot" style="background:#f59e0b"></span>Warning
+                    </button>
+                    <button class="toast-pill"
+                        onclick="fireToast('Error!','Action failed','#ef4444','rgba(239,68,68,.15)','ti-x')">
+                        <span class="tdot" style="background:#ef4444"></span>Error
+                    </button>
+                    <button class="toast-pill"
+                        onclick="fireToast('Update ready','v2.4.0 available','#3b82f6','rgba(59,130,246,.15)','ti-info-circle')">
+                        <span class="tdot" style="background:#3b82f6"></span>Info
+                    </button>
+                    <button class="toast-pill"
+                        onclick="fireToast('Liked!','Added to favourites','#ec4899','rgba(236,72,153,.15)','ti-heart')">
+                        <span class="tdot" style="background:#ec4899"></span>Like
+                    </button>
+                </div>
+
+                <div class="hint" style="margin-top:16px">
+                    Press <span class="kbd">Esc</span> to close · Click outside modal to dismiss
+                </div>
+            </div>
+
+        </div><!-- /wrap -->
+
+        <!-- TOAST CONTAINER -->
+        <div class="toast-stack" id="toastStack"></div>
+
+        <!-- ════════════════════════════════
+     BACKDROP + ALL MODALS
+════════════════════════════════ -->
+        <div class="backdrop" id="backdrop" onclick="handleBackdropClick(event)">
+
+            <!-- ① INVITE USER -->
+            <div class="mbox" id="m-invite" style="display:none">
+                <div class="mband band-purple"></div>
+                <div class="mbody">
+                    <div class="mtop">
+                        <div class="m-icon ic-purple"><i class="ti ti-user-plus"></i></div>
+                        <div class="mhead">
+                            <p class="mtitle">Invite team member</p>
+                            <p class="msub">Send an invite to your workspace</p>
+                        </div>
+                        <button class="close-btn" onclick="closeModal()" aria-label="Close"><i
+                                class="ti ti-x"></i></button>
+                    </div>
+
+                    <div class="field">
+                        <label class="flabel">Full name</label>
+                        <input class="finput" type="text" placeholder="Priya Sharma" id="inv-name" />
+                    </div>
+                    <div class="field">
+                        <label class="flabel">Email address</label>
+                        <input class="finput" type="email" placeholder="priya@company.com" />
+                    </div>
+                    <div class="field">
+                        <label class="flabel">Role</label>
+                        <select class="finput">
+                            <option>Viewer</option>
+                            <option>Editor</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="mfooter">
+                        <button class="fb" onclick="closeModal()">Cancel</button>
+                        <button class="fb fb-purple" onclick="submitInvite()">
+                            <i class="ti ti-send"></i> Send invite
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ② DELETE CONFIRM -->
+            <div class="mbox" id="m-delete" style="display:none">
+                <div class="mband band-red"></div>
+                <div class="mbody">
+                    <div class="mtop">
+                        <div class="m-icon ic-red"><i class="ti ti-alert-triangle"></i></div>
+                        <div class="mhead">
+                            <p class="mtitle">Delete project?</p>
+                            <p class="msub">This action is permanent and irreversible</p>
+                        </div>
+                        <button class="close-btn" onclick="closeModal()" aria-label="Close"><i
+                                class="ti ti-x"></i></button>
+                    </div>
+
+                    <div class="del-box">
+                        <p>
+                            <i class="ti ti-folder"></i>
+                            <strong>Brand Redesign 2025</strong> — 47 files, 3 collaborators,
+                            and 8 months of history will be permanently erased.
+                        </p>
+                    </div>
+
+                    <div class="mfooter">
+                        <button class="fb" onclick="closeModal()">Keep it safe</button>
+                        <button class="fb fb-red"
+                            onclick="closeModal(); fireToast('Deleted','Project removed permanently','#ef4444','rgba(239,68,68,.15)','ti-trash')">
+                            <i class="ti ti-trash"></i> Yes, delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ③ SUCCESS / PAYMENT -->
+            <div class="mbox" id="m-success" style="display:none">
+                <div class="mband band-green"></div>
+                <div class="mbody">
+                    <div class="suc-center">
+                        <div class="suc-ring"><i class="ti ti-circle-check"></i></div>
+                        <p style="font-size:18px;font-weight:800;color:#f0efff;margin-bottom:8px">Payment successful!
+                        </p>
+                        <p style="font-size:13px;color:#505070;line-height:1.6">
+                            Your subscription has been upgraded to
+                            <strong style="color:#b794f4">Pro</strong>.
+                            Receipt sent to your email.
+                        </p>
+
+                        <div class="receipt">
+                            <div class="r-row"><span>Plan</span><span>Pro Annual</span></div>
+                            <div class="r-row"><span>Billed to</span><span>•••• •••• 4242</span></div>
+                            <div class="r-row"><span>Date</span><span>14 May 2026</span></div>
+                            <div class="r-row"><span>Amount</span><span class="amt">₹4,999 / yr</span></div>
+                        </div>
+                    </div>
+
+                    <div class="mfooter" style="justify-content:center;border:none;padding-top:8px">
+                        <button class="fb fb-green" onclick="closeModal()">
+                            Continue to dashboard <i class="ti ti-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ④ STEP WIZARD -->
+            <div class="mbox" id="m-wizard" style="display:none">
+                <div class="mband band-amber"></div>
+                <div class="mbody">
+                    <div class="mtop">
+                        <div class="m-icon ic-amber"><i class="ti ti-list-check"></i></div>
+                        <div class="mhead">
+                            <p class="mtitle">Setup wizard</p>
+                            <p class="msub" id="wiz-sub">Configure your workspace</p>
+                        </div>
+                        <button class="close-btn" onclick="closeModal()" aria-label="Close"><i
+                                class="ti ti-x"></i></button>
+                    </div>
+
+                    <div class="steps" id="wiz-steps">
+                        <div class="step active"></div>
+                        <div class="step"></div>
+                        <div class="step"></div>
+                    </div>
+
+                    <div class="prog-info">
+                        <span class="prog-lbl" id="wiz-label">Step 1 of 3</span>
+                        <span class="prog-cnt" id="wiz-count">Workspace</span>
+                    </div>
+
+                    <div id="wiz-content"></div>
+
+                    <div class="mfooter">
+                        <button class="fb" id="wiz-back" onclick="wizBack()" style="display:none">
+                            <i class="ti ti-arrow-left"></i> Back
+                        </button>
+                        <button class="fb fb-amber" id="wiz-next" onclick="wizNext()">
+                            Next <i class="ti ti-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ⑤ PROFILE VIEW -->
+            <div class="mbox" id="m-profile" style="display:none">
+                <div class="mband band-blue"></div>
+                <div class="mbody">
+                    <div class="mtop">
+                        <div class="m-icon ic-blue"><i class="ti ti-user-circle"></i></div>
+                        <div class="mhead">
+                            <p class="mtitle">Team member</p>
+                            <p class="msub">Profile overview</p>
+                        </div>
+                        <button class="close-btn" onclick="closeModal()" aria-label="Close"><i
+                                class="ti ti-x"></i></button>
+                    </div>
+
+                    <div class="avatar-row">
+                        <div class="avatar">AR</div>
+                        <div class="avatar-info">
+                            <p>Arjun Mehta</p>
+                            <span>Senior Designer · Mumbai, India</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <p>Projects</p>
+                            <b>24</b>
+                        </div>
+                        <div class="stat-card">
+                            <p>Rating</p>
+                            <b>4.9 <i class="ti ti-star"
+                                    style="font-size:16px;color:#fbbf24;vertical-align:-2px"></i></b>
+                        </div>
+                    </div>
+
+                    <div class="contact-row"><i class="ti ti-mail"></i> arjun@company.com</div>
+                    <div class="contact-row" style="margin-top:-4px"><i class="ti ti-brand-slack"></i> @arjunmehta</div>
+
+                    <div class="mfooter">
+                        <button class="fb" onclick="closeModal()">Close</button>
+                        <button class="fb fb-blue"
+                            onclick="closeModal(); fireToast('Sent!','Pinged Arjun on Slack','#3b82f6','rgba(59,130,246,.15)','ti-send')">
+                            <i class="ti ti-send"></i> Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /backdrop -->
+
+
+        <!-- ════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════ -->
+        <script src="script.js"></script>
+    </body>
+
+</html>
