@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShopLuxe — Day 16</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <nav>
+            <div class="nav-logo">Shop<span>Luxe</span></div>
+            <div class="nav-right">
+                <button class="cart-badge" onclick="scrollToCart()">
+                    🛒 My Cart <span class="badge-count" id="badgeCount">0</span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="layout">
+
+            <!-- PRODUCTS PANEL -->
+            <div class="products-panel">
+                <div class="panel-top">
+                    <h1 class="section-title">Curated Collection</h1>
+                    <p class="section-sub">Handpicked essentials for the discerning buyer</p>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterProducts('all',this)">All Items</button>
+                    <button class="filter-tab" onclick="filterProducts('food',this)">Food &amp; Drink</button>
+                    <button class="filter-tab" onclick="filterProducts('tech',this)">Tech</button>
+                    <button class="filter-tab" onclick="filterProducts('fashion',this)">Fashion</button>
+                    <button class="filter-tab" onclick="filterProducts('home',this)">Home</button>
+                </div>
+
+                <div class="product-grid" id="productGrid"></div>
+            </div>
+
+            <!-- CART PANEL -->
+            <div class="cart-panel" id="cartPanel">
+                <div class="cart-header">
+                    <div class="cart-title-row">
+                        <div class="cart-title">Your Cart</div>
+                        <div class="cart-count" id="cartCountText">0 items</div>
+                    </div>
+                    <div class="shipping-progress">
+                        <div class="progress-label" id="progressLabel">Add ₹3,000 worth for free shipping</div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cartItemsContainer" class="cart-items"></div>
+
+                <div class="cart-footer" id="cartFooter" style="display:none">
+                    <div class="promo-row">
+                        <input type="text" class="promo-input" id="promoInput" placeholder="Promo code (try SAVE10)">
+                        <button class="promo-btn" onclick="applyPromo()">Apply</button>
+                    </div>
+                    <div class="price-rows">
+                        <div class="price-row"><span>Subtotal</span><span id="subtotalVal">₹0</span></div>
+                        <div class="price-row"><span>Shipping</span><span id="shippingVal">₹99</span></div>
+                        <div class="price-row discount" id="discountRow" style="display:none">
+                            <span>✦ Promo (10% off)</span><span id="discountVal">−₹0</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total</span><span id="totalVal">₹0</span>
+                        </div>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">✦ Proceed to Checkout</button>
+                    <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOAST -->
+        <div class="toast" id="toast">
+            <div class="toast-dot"></div>
+            <span id="toastMsg">Item added!</span>
+        </div>
+
+        <!-- SUCCESS MODAL -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal">
+                <div class="modal-icon">🎉</div>
+                <div class="modal-title">Order Placed!</div>
+                <div class="modal-sub">Your order has been confirmed. You'll receive a confirmation email shortly.</div>
+                <div class="modal-order">Order ID: <span id="orderId">#SL-000000</span></div>
+                <button class="modal-close" onclick="closeModal()">Continue Shopping</button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
