@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ZenAuth</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div id="toast" class="toast s"><span class="tdot"></span><span id="tmsg"></span></div>
+
+        <div class="card">
+
+            <!-- ══ LEFT PANEL ══ -->
+            <div class="left">
+                <div class="lbg"></div>
+                <div class="blob b1"></div>
+                <div class="blob b2"></div>
+                <div class="blob b3"></div>
+                <div class="ring r1"></div>
+                <div class="ring r2"></div>
+                <div class="linner">
+                    <div class="brand">
+                        <div class="brand-box">🔐</div>
+                        <div class="brand-name">ZenAuth</div>
+                    </div>
+                    <div class="ltitle" id="ltitle">Hello,<br>Welcome!</div>
+                    <div class="lsub" id="lsub">Don't have an account?</div>
+                    <button class="pill-btn" onclick="goPanel('signup')">
+                        <span id="pillTxt">Register</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="ssl-badge"><span class="ssl-dot"></span>256-bit SSL Secured</div>
+            </div>
+
+            <!-- ══ RIGHT PANEL ══ -->
+            <div class="right">
+
+                <div class="switcher">
+                    <button class="sw on" id="swLogin" onclick="goPanel('login')">Sign In</button>
+                    <button class="sw" id="swReg" onclick="goPanel('signup')">Sign Up</button>
+                </div>
+
+                <!-- ── LOGIN PANEL ── -->
+                <div class="panel on" id="loginP">
+                    <div class="form-title">Welcome back 👋</div>
+                    <div class="form-sub">Sign in to your account</div>
+
+                    <div class="field" id="lef">
+                        <label>Email Address</label>
+                        <div class="inp">
+                            <span class="iico">
+                                <i class="fa-solid fa-envelope"></i>
+                             </span>
+                            <input type="email" id="lemail" placeholder="you@example.com" oninput="vle()" />
+                        </div>
+                        <div class="fmsg" id="lemsg"></div>
+                    </div>
+
+                    <div class="field" id="lpf">
+                        <label>Password</label>
+                        <div class="inp">
+                            <span class="iico">
+                                <i class="fa-solid fa-lock"></i>
+                             </span>
+                            <input type="password" id="lpass" placeholder="Enter your password" oninput="vlp()" />
+                            <button class="eyebtn" type="button" onclick="tg('lpass',this)">
+                                <i class="fa-solid fa-eye"></i>
+                             </button>
+                        </div>
+                        <div class="fmsg" id="lpmsg"></div>
+                    </div>
+
+                    <div class="forgot"><a href="#">Forgot Password?</a></div>
+                    <button class="btn-go" onclick="doLogin()">Sign In →</button>
+                    <div class="or">or login with social platforms</div>
+                    <div class="socials" id="loginSocials"></div>
+                </div>
+
+                <!-- ── REGISTER PANEL (MULTI-STEP) ── -->
+                <div class="panel" id="signupP">
+
+                    <!-- Progress Stepper -->
+                    <div class="stepper" id="stepper">
+                        <div class="step-item active" id="si0">
+                            <div class="step-circle" id="sc0">1</div>
+                            <div class="step-lbl">Account</div>
+                        </div>
+                        <div class="step-item" id="si1">
+                            <div class="step-circle" id="sc1">2</div>
+                            <div class="step-lbl">Security</div>
+                        </div>
+                        <div class="step-item" id="si2">
+                            <div class="step-circle" id="sc2">3</div>
+                            <div class="step-lbl">Done</div>
+                        </div>
+                    </div>
+
+                    <div class="steps-wrap">
+
+                        <!-- STEP 1 — Account Info -->
+                        <div class="step-slide on" id="step0">
+                            <div class="step-badge">✦ Step 1 of 2 — Tell us about you</div>
+                            <div class="step-head">
+                                <h2>Your details</h2>
+                                <p>Let's start with the basics — takes 10 seconds</p>
+                            </div>
+
+                            <div class="field-row">
+                                <div class="field" id="rfnf">
+                                    <label>First Name</label>
+                                
+                                    <div class="inp">
+                                        <span class="iico">
+                                            <i class="fa-solid fa-user"></i>
+                                        </span>
+                                
+                                        <input type="text" id="rfn" placeholder="John" oninput="vrfn()" />
+                                    </div>
+                                
+                                    <div class="fmsg" id="rfnmsg"></div>
+                                </div>
+                                <div class="field" id="rlnf">
+                                    <label>Last Name</label>
+                                
+                                    <div class="inp">
+                                        <span class="iico">
+                                            <i class="fa-solid fa-user"></i>
+                                        </span>
+                                
+                                        <input type="text" id="rln" placeholder="Doe" oninput="vrln()" />
+                                    </div>
+                                
+                                    <div class="fmsg" id="rlnmsg"></div>
+                                </div>
+                            </div>
+
+                            <div class="field" id="ref">
+                                <label>Email Address</label>
+                                <div class="inp">
+                                    <span class="iico">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input type="email" id="remail" placeholder="you@example.com" oninput="vre()" />
+                                </div>
+                                <div class="fmsg" id="remsg"></div>
+                            </div>
+
+                            <div class="step-nav">
+                                <button class="btn-next" onclick="nextStep()">
+                                    Continue &nbsp;→
+                                </button>
+                            </div>
+
+                            <div class="or" style="margin-top:1.1rem">or sign up with</div>
+                            <div class="socials" id="regSocials"></div>
+                        </div>
+
+                        <!-- STEP 2 — Security -->
+                        <div class="step-slide" id="step1">
+                            <div class="step-badge">✦ Step 2 of 2 — Almost there!</div>
+                            <div class="step-head">
+                                <h2>Secure it 🔒</h2>
+                                <p>Create a strong password to protect your account</p>
+                            </div>
+
+                            <div class="field" id="rpf">
+                                <label>Password</label>
+                                <div class="inp">
+                                    <span class="iico">
+                                        <i class="fa-solid fa-lock"></i>
+                                     </span>
+                                    <input type="password" id="rpass" placeholder="Create a strong password"
+                                        oninput="vrp()" />
+                                        <button class="eyebtn" type="button" onclick="tg('rpass',this)">
+                                            <i class="fa-solid fa-eye"></i>
+                                         </button>
+                                </div>
+                                
+                                <div class="fmsg" id="rpmsg"></div>
+                            </div>
+
+                            <div class="field" id="rcf">
+                                <label>Confirm Password</label>
+                                <div class="inp">
+                                    <span class="iico">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                     </span>
+                                    <input type="password" id="rconf" placeholder="Repeat your password"
+                                        oninput="vrc()" />
+                                </div>
+                                <div class="fmsg" id="rcmsg"></div>
+                            </div>
+
+                            <label class="terms">
+                                <input type="checkbox" id="rterms" />
+                                I agree to the <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a>
+                            </label>
+
+                            <div class="step-nav">
+                                <button class="btn-back" onclick="prevStep()">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    Back
+                                </button>
+                                <button class="btn-next" onclick="doSignup()">Create Account ✦</button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3 — Success -->
+                        <div class="step-slide" id="step2">
+                            <div class="success-step">
+                                <div class="success-icon">🎉</div>
+                                <h2>You're all set!</h2>
+                                <p>Your account has been created successfully.<br>Welcome to AuthFlow — you're going to
+                                    love it.</p>
+                                <button class="btn-go" onclick="goPanel('login')"
+                                    style="max-width:260px;margin:0 auto">Go to Sign In →
+                                </button>
+                            </div>
+                        </div>
+
+                    </div><!-- /steps-wrap -->
+
+                    <!-- Saved users -->
+                    <div id="ubox" class="ubox" style="display:none">
+                        <h4>💾 Registered Users</h4>
+                        <div id="ulist"></div>
+                    </div>
+
+                </div><!-- /signupP -->
+
+            </div><!-- /right -->
+        </div><!-- /card -->
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
