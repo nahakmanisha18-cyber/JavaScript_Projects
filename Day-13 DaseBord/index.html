@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NexBoard — Dashboard</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">N</div>
+                <span class="logo-text">NexBoard</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Main</div>
+                <div class="nav-item active" onclick="navigate('dashboard', this)">
+                    <i class="ti ti-layout-dashboard"></i> Dashboard
+                </div>
+                <div class="nav-item" onclick="navigate('analytics', this)">
+                    <i class="ti ti-chart-bar"></i> Analytics
+                </div>
+                <div class="nav-item" onclick="navigate('tasks', this)">
+                    <i class="ti ti-checkbox"></i> Tasks
+                    <span class="nav-badge" id="task-count">0</span>
+                </div>
+                <div class="nav-item" onclick="navigate('notes', this)">
+                    <i class="ti ti-note"></i> Notes
+                    <span class="nav-badge" id="note-count">0</span>
+                </div>
+
+                <div class="nav-section-label">Manage</div>
+                <div class="nav-item" onclick="navigate('projects', this)">
+                    <i class="ti ti-folders"></i> Projects
+                </div>
+                <div class="nav-item" onclick="navigate('team', this)">
+                    <i class="ti ti-users"></i> Team
+                </div>
+                <div class="nav-item" onclick="navigate('notifications', this)">
+                    <i class="ti ti-bell"></i> Notifications
+                    <span class="nav-badge red" id="notif-count">3</span>
+                </div>
+
+                <div class="nav-section-label">Account</div>
+                <div class="nav-item" onclick="navigate('profile', this)">
+                    <i class="ti ti-user-circle"></i> Profile
+                </div>
+                <div class="nav-item" onclick="navigate('settings', this)">
+                    <i class="ti ti-settings"></i> Settings
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="avatar" id="sidebar-avatar">AK</div>
+                    <div class="user-info">
+                        <div class="user-name" id="sidebar-name">Arjun Kumar</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                    <i class="ti ti-chevron-up" style="color:var(--text3);font-size:16px"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="main">
+            <header class="header">
+                <div class="header-title" id="header-title">Dashboard</div>
+                <div class="search-bar">
+                    <i class="ti ti-search"></i>
+                    <input type="text" placeholder="Search anything..." id="global-search">
+                </div>
+                <div class="icon-btn"
+                    onclick="navigate('notifications', document.querySelector('.nav-item:nth-child(8)'))">
+                    <i class="ti ti-bell"></i>
+                    <span class="notif-dot" id="notif-dot"></span>
+                </div>
+                <div class="icon-btn" onclick="navigate('profile', null)">
+                    <div class="avatar" style="width:28px;height:28px;font-size:11px" id="header-avatar">AK</div>
+                </div>
+            </header>
+
+            <div class="content" id="main-content">
+
+                <!-- ========== DASHBOARD PAGE ========== -->
+                <div class="page active" id="page-dashboard">
+                    <div class="page-header">
+                        <h1>Good morning, <span id="greeting-name">Arjun</span> 👋</h1>
+                        <p id="greeting-date">Loading date...</p>
+                    </div>
+
+                    <div class="grid-4" style="margin-bottom:20px">
+                        <div class="stat-card purple">
+                            <div class="stat-icon purple"><i class="ti ti-currency-dollar"></i></div>
+                            <div class="stat-label">Total Revenue</div>
+                            <div class="stat-value" style="color:var(--accent)">$84,250</div>
+                            <div class="stat-change up"><i class="ti ti-trending-up" style="font-size:14px"></i> +12.5%
+                                this month</div>
+                        </div>
+                        <div class="stat-card green">
+                            <div class="stat-icon green"><i class="ti ti-users"></i></div>
+                            <div class="stat-label">Total Users</div>
+                            <div class="stat-value" style="color:var(--green)">12,840</div>
+                            <div class="stat-change up"><i class="ti ti-trending-up" style="font-size:14px"></i> +8.2%
+                                this month</div>
+                        </div>
+                        <div class="stat-card amber">
+                            <div class="stat-icon amber"><i class="ti ti-shopping-cart"></i></div>
+                            <div class="stat-label">Orders</div>
+                            <div class="stat-value" style="color:var(--amber)">3,642</div>
+                            <div class="stat-change down"><i class="ti ti-trending-down" style="font-size:14px"></i>
+                                -2.1% this month</div>
+                        </div>
+                        <div class="stat-card cyan">
+                            <div class="stat-icon cyan"><i class="ti ti-star"></i></div>
+                            <div class="stat-label">Satisfaction</div>
+                            <div class="stat-value" style="color:var(--cyan)">4.8/5</div>
+                            <div class="stat-change up"><i class="ti ti-trending-up" style="font-size:14px"></i> +0.3
+                                this month</div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2-1" style="margin-bottom:20px">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="card-title">Revenue Overview</span>
+                                <span class="badge purple">2024</span>
+                            </div>
+                            <div class="chart-wrap"><canvas id="revenueChart" height="200"></canvas></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="card-title">Traffic Sources</span>
+                            </div>
+                            <div class="chart-wrap"><canvas id="donutChart" height="200"></canvas></div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="card-title">Recent Transactions</span>
+                                <span class="badge info" style="cursor:pointer"
+                                    onclick="navigate('analytics', null)">View all</span>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong style="color:var(--text)">Priya Sharma</strong></td>
+                                        <td>$1,240</td>
+                                        <td><span class="badge success">Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:var(--text)">Rohan Mehta</strong></td>
+                                        <td>$850</td>
+                                        <td><span class="badge warning">Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:var(--text)">Ananya Singh</strong></td>
+                                        <td>$2,100</td>
+                                        <td><span class="badge success">Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:var(--text)">Vikram Nair</strong></td>
+                                        <td>$670</td>
+                                        <td><span class="badge danger">Failed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong style="color:var(--text)">Kavya Patel</strong></td>
+                                        <td>$3,400</td>
+                                        <td><span class="badge success">Paid</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="card-title">Recent Activity</span>
+                            </div>
+                            <div id="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:var(--accent-glow);color:var(--accent)">
+                                        <i class="ti ti-user-plus"></i></div>
+                                    <div class="activity-content">
+                                        <div class="activity-text"><strong>New user registered</strong> — Priya Sharma
+                                            joined</div>
+                                        <div class="activity-time">2 minutes ago</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:var(--green-bg);color:var(--green)"><i
+                                            class="ti ti-check"></i></div>
+                                    <div class="activity-content">
+                                        <div class="activity-text"><strong>Task completed</strong> — Q4 Report submitted
+                                        </div>
+                                        <div class="activity-time">18 minutes ago</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:var(--amber-bg);color:var(--amber)"><i
+                                            class="ti ti-alert-triangle"></i></div>
+                                    <div class="activity-content">
+                                        <div class="activity-text"><strong>Alert</strong> — Server load above 80%</div>
+                                        <div class="activity-time">1 hour ago</div>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-dot" style="background:var(--cyan-bg);color:var(--cyan)"><i
+                                            class="ti ti-file-upload"></i></div>
+                                    <div class="activity-content">
+                                        <div class="activity-text"><strong>File uploaded</strong> — design_assets_v2.zip
+                                        </div>
+                                        <div class="activity-time">3 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== ANALYTICS PAGE ========== -->
+                <div class="page" id="page-analytics">
+                    <div class="page-header">
+                        <h1>Analytics</h1>
+                        <p>Detailed performance metrics and insights</p>
+                    </div>
+
+                    <div class="grid-3" style="margin-bottom:20px">
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:12px">Weekly Visitors</div>
+                            <div
+                                style="font-size:32px;font-weight:800;color:var(--accent)">
+                                48,291</div>
+                            <div class="stat-change up" style="margin-top:6px"><i class="ti ti-trending-up"
+                                    style="font-size:14px"></i> +15.3% vs last week</div>
+                            <div class="mini-chart" style="margin-top:16px" id="mini1"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:12px">Bounce Rate</div>
+                            <div
+                                style="font-size:32px;font-weight:800;color:var(--amber)">
+                                32.4%</div>
+                            <div class="stat-change down" style="margin-top:6px"><i class="ti ti-trending-down"
+                                    style="font-size:14px"></i> -4.1% vs last week</div>
+                            <div class="mini-chart" style="margin-top:16px" id="mini2"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:12px">Avg Session</div>
+                            <div
+                                style="font-size:32px;font-weight:800;color:var(--cyan)">
+                                4m 32s</div>
+                            <div class="stat-change up" style="margin-top:6px"><i class="ti ti-trending-up"
+                                    style="font-size:14px"></i> +0.8% vs last week</div>
+                            <div class="mini-chart" style="margin-top:16px" id="mini3"></div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-bottom:20px">
+                        <div class="card-header">
+                            <span class="card-title">Monthly Performance</span>
+                            <div style="display:flex;gap:8px">
+                                <span class="badge success">Users</span>
+                                <span class="badge purple">Revenue</span>
+                            </div>
+                        </div>
+                        <canvas id="lineChart" height="120"></canvas>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">Top Pages</span>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Page</th>
+                                    <th>Visitors</th>
+                                    <th>Bounce</th>
+                                    <th>Conversion</th>
+                                    <th>Traffic</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="color:var(--text)">/home</td>
+                                    <td>18,240</td>
+                                    <td>22%</td>
+                                    <td>4.2%</td>
+                                    <td style="min-width:100px">
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width:75%;background:var(--accent)"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text)">/products</td>
+                                    <td>12,100</td>
+                                    <td>34%</td>
+                                    <td>6.8%</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width:50%;background:var(--green)"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text)">/pricing</td>
+                                    <td>8,760</td>
+                                    <td>41%</td>
+                                    <td>9.1%</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width:36%;background:var(--amber)"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text)">/blog</td>
+                                    <td>5,820</td>
+                                    <td>55%</td>
+                                    <td>1.2%</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width:24%;background:var(--cyan)"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:var(--text)">/contact</td>
+                                    <td>2,940</td>
+                                    <td>28%</td>
+                                    <td>12.4%</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width:12%;background:var(--pink)"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ========== TASKS PAGE ========== -->
+                <div class="page" id="page-tasks">
+                    <div class="page-header">
+                        <h1>Tasks</h1>
+                        <p>Manage your daily to-dos — saved locally</p>
+                    </div>
+
+                    <div class="card" style="margin-bottom:20px">
+                        <div class="task-input-row">
+                            <input type="text" class="note-input" id="task-input" placeholder="Add a new task..."
+                                style="flex:1">
+                            <select class="note-input" id="task-priority" style="width:120px">
+                                <option value="high">High</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                            <button class="btn btn-primary" onclick="addTask()"><i class="ti ti-plus"></i> Add</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">All Tasks</span>
+                            <div style="display:flex;gap:8px">
+                                <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px"
+                                    onclick="clearDone()">Clear Done</button>
+                            </div>
+                        </div>
+                        <div id="task-list"></div>
+                        <div class="empty-state" id="task-empty" style="display:none">
+                            <i class="ti ti-checkbox" aria-hidden="true"></i>
+                            No tasks yet — add one above!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== NOTES PAGE ========== -->
+                <div class="page" id="page-notes">
+                    <div class="page-header">
+                        <h1>Notes</h1>
+                        <p>Quick notes saved in your browser</p>
+                    </div>
+
+                    <div class="card" style="margin-bottom:20px">
+                        <div class="note-form">
+                            <input type="text" class="note-input" id="note-title" placeholder="Note title...">
+                            <textarea class="note-textarea" id="note-body"
+                                placeholder="Write your note here..."></textarea>
+                            <div style="display:flex;gap:10px">
+                                <button class="btn btn-primary" onclick="addNote()"><i class="ti ti-device-floppy"></i>
+                                    Save Note</button>
+                                <button class="btn btn-ghost" onclick="clearNoteForm()"><i class="ti ti-x"></i>
+                                    Clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notes-grid" id="notes-grid"></div>
+                    <div class="empty-state" id="notes-empty" style="display:none">
+                        <i class="ti ti-note" aria-hidden="true"></i>
+                        No notes yet — create your first note!
+                    </div>
+                </div>
+
+                <!-- ========== PROJECTS PAGE ========== -->
+                <div class="page" id="page-projects">
+                    <div class="page-header">
+                        <h1>Projects</h1>
+                        <p>Active project tracking and progress</p>
+                    </div>
+
+                    <div class="grid-3">
+                        <div class="card" style="border-top:3px solid var(--accent)">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                                <span class="badge purple">In Progress</span>
+                                <i class="ti ti-dots" style="color:var(--text3);cursor:pointer"></i>
+                            </div>
+                            <h3
+                                style="font-size:16px;font-weight:700;margin-bottom:8px">
+                                NexBoard App v2.0</h3>
+                            <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Redesigning the entire
+                                dashboard with new component library and dark mode support.</p>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:8px">
+                                <span>Progress</span><span>72%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width:72%;background:var(--accent)"></div>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;margin-top:14px;font-size:12px;color:var(--text3)">
+                                <span><i class="ti ti-calendar" style="font-size:13px"></i> Due Dec 15</span>
+                                <div style="display:flex;gap:-6px">
+                                    <div class="avatar" style="width:24px;height:24px;font-size:9px">AK</div>
+                                    <div class="avatar"
+                                        style="width:24px;height:24px;font-size:9px;background:linear-gradient(135deg,var(--green),var(--cyan))">
+                                        PS</div>
+                                    <div class="avatar"
+                                        style="width:24px;height:24px;font-size:9px;background:linear-gradient(135deg,var(--amber),var(--red))">
+                                        RM</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="border-top:3px solid var(--green)">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                                <span class="badge success">Completed</span>
+                                <i class="ti ti-dots" style="color:var(--text3);cursor:pointer"></i>
+                            </div>
+                            <h3
+                                style="font-size:16px;font-weight:700;margin-bottom:8px">
+                                API Integration Layer</h3>
+                            <p style="font-size:13px;color:var(--text2);margin-bottom:16px">REST API connections for
+                                payments, analytics, and third-party services.</p>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:8px">
+                                <span>Progress</span><span>100%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width:100%;background:var(--green)"></div>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;margin-top:14px;font-size:12px;color:var(--text3)">
+                                <span><i class="ti ti-check" style="font-size:13px;color:var(--green)"></i> Completed
+                                    Nov 2</span>
+                            </div>
+                        </div>
+
+                        <div class="card" style="border-top:3px solid var(--amber)">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                                <span class="badge warning">On Hold</span>
+                                <i class="ti ti-dots" style="color:var(--text3);cursor:pointer"></i>
+                            </div>
+                            <h3
+                                style="font-size:16px;font-weight:700;margin-bottom:8px">
+                                Mobile App Launch</h3>
+                            <p style="font-size:13px;color:var(--text2);margin-bottom:16px">iOS and Android native apps
+                                with push notifications and offline mode.</p>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:8px">
+                                <span>Progress</span><span>38%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width:38%;background:var(--amber)"></div>
+                            </div>
+                            <div
+                                style="display:flex;justify-content:space-between;margin-top:14px;font-size:12px;color:var(--text3)">
+                                <span><i class="ti ti-calendar" style="font-size:13px"></i> Due Q1 2025</span>
+                            </div>
+                        </div>
+
+                        <div class="card" style="border-top:3px solid var(--red)">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                                <span class="badge danger">Overdue</span>
+                                <i class="ti ti-dots" style="color:var(--text3);cursor:pointer"></i>
+                            </div>
+                            <h3
+                                style="font-size:16px;font-weight:700;margin-bottom:8px">
+                                Security Audit</h3>
+                            <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Comprehensive penetration
+                                testing and vulnerability assessment report.</p>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:8px">
+                                <span>Progress</span><span>55%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width:55%;background:var(--red)"></div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="border-top:3px solid var(--cyan)">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+                                <span class="badge info">Planning</span>
+                            </div>
+                            <h3
+                                style="font-size:16px;font-weight:700;margin-bottom:8px">
+                                Data Pipeline v3</h3>
+                            <p style="font-size:13px;color:var(--text2);margin-bottom:16px">ETL pipeline redesign with
+                                real-time streaming and improved fault tolerance.</p>
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:12px;color:var(--text3);margin-bottom:8px">
+                                <span>Progress</span><span>10%</span></div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width:10%;background:var(--cyan)"></div>
+                            </div>
+                        </div>
+
+                        <div class="card"
+                            style="border:1px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;cursor:pointer;opacity:0.6;transition:opacity 0.2s"
+                            onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">
+                            <i class="ti ti-plus" style="font-size:32px;color:var(--text3);margin-bottom:10px"></i>
+                            <span style="font-size:14px;color:var(--text3)">New Project</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== TEAM PAGE ========== -->
+                <div class="page" id="page-team">
+                    <div class="page-header">
+                        <h1>Team</h1>
+                        <p>Manage team members and roles</p>
+                    </div>
+                    <div id="team-members-container"></div>
+                </div>
+
+                <!-- ========== NOTIFICATIONS PAGE ========== -->
+                <div class="page" id="page-notifications">
+                    <div class="page-header">
+                        <h1>Notifications</h1>
+                        <p>Stay updated with recent activity</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title">All Notifications</span>
+                            <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px"
+                                onclick="clearNotifs()">Mark all read</button>
+                        </div>
+                        <div id="notif-list">
+                            <div class="activity-item" style="padding:14px 0">
+                                <div class="activity-dot" style="background:var(--red-bg);color:var(--red)"><i
+                                        class="ti ti-alert-circle"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-text"><strong>Critical Alert</strong> — Database storage at 92%
+                                        capacity</div>
+                                    <div class="activity-time">5 minutes ago</div>
+                                </div>
+                                <span class="badge danger" style="align-self:center">New</span>
+                            </div>
+                            <div class="activity-item" style="padding:14px 0">
+                                <div class="activity-dot" style="background:var(--accent-glow);color:var(--accent)"><i
+                                        class="ti ti-user-plus"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-text"><strong>New team member</strong> — Neha Gupta joined the
+                                        Design team</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                                <span class="badge purple" style="align-self:center">New</span>
+                            </div>
+                            <div class="activity-item" style="padding:14px 0">
+                                <div class="activity-dot" style="background:var(--amber-bg);color:var(--amber)"><i
+                                        class="ti ti-git-pull-request"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-text"><strong>PR Review Needed</strong> —
+                                        feature/dashboard-redesign requires your approval</div>
+                                    <div class="activity-time">4 hours ago</div>
+                                </div>
+                                <span class="badge warning" style="align-self:center">New</span>
+                            </div>
+                            <div class="activity-item" style="padding:14px 0">
+                                <div class="activity-dot" style="background:var(--green-bg);color:var(--green)"><i
+                                        class="ti ti-check"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-text"><strong>Deployment Success</strong> — v2.1.4 deployed to
+                                        production</div>
+                                    <div class="activity-time">Yesterday</div>
+                                </div>
+                            </div>
+                            <div class="activity-item" style="padding:14px 0">
+                                <div class="activity-dot" style="background:var(--cyan-bg);color:var(--cyan)"><i
+                                        class="ti ti-mail"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-text"><strong>Invoice Paid</strong> — Client Priya Sharma paid
+                                        $3,400</div>
+                                    <div class="activity-time">2 days ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PROFILE PAGE ========== -->
+                <div class="page" id="page-profile">
+                    <div class="page-header">
+                        <h1>Profile</h1>
+                        <p>Your personal information</p>
+                    </div>
+
+                    <div class="profile-header">
+                        <div class="profile-avatar" id="profile-avatar-display">AK</div>
+                        <div>
+                            <div class="profile-name" id="profile-name-display">Arjun Kumar</div>
+                            <div class="profile-role">Administrator · NexBoard</div>
+                            <div class="profile-badges">
+                                <span class="badge purple">Admin</span>
+                                <span class="badge success">Active</span>
+                                <span class="badge info">Pro Plan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">Edit Profile</span></div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input class="form-input" id="pf-firstname" value="Arjun">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input class="form-input" id="pf-lastname" value="Kumar">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input class="form-input" id="pf-email" value="arjun@nexboard.io">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input class="form-input" id="pf-phone" value="+91 98765 43210">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Bio</label>
+                            <textarea class="form-input note-textarea" id="pf-bio"
+                                style="min-height:80px">Full-stack developer and product lead at NexBoard. Passionate about beautiful interfaces and clean code.</textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveProfile()"><i class="ti ti-device-floppy"></i> Save
+                            Changes</button>
+                    </div>
+                </div>
+
+                <!-- ========== SETTINGS PAGE ========== -->
+                <div class="page" id="page-settings">
+                    <div class="page-header">
+                        <h1>Settings</h1>
+                        <p>Customize your dashboard experience</p>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">Notifications</div>
+                            <div class="settings-group">
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Email Notifications</div>
+                                        <div class="settings-desc">Receive updates via email</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Push Notifications</div>
+                                        <div class="settings-desc">Browser push alerts</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Task Reminders</div>
+                                        <div class="settings-desc">Remind for due tasks</div>
+                                    </div>
+                                    <div class="toggle" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Weekly Report</div>
+                                        <div class="settings-desc">Summary every Monday</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">Appearance</div>
+                            <div class="settings-group">
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Compact Mode</div>
+                                        <div class="settings-desc">Reduce spacing and padding</div>
+                                    </div>
+                                    <div class="toggle" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Show Animations</div>
+                                        <div class="settings-desc">UI transitions and effects</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Auto-save Notes</div>
+                                        <div class="settings-desc">Save notes automatically</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">Security</div>
+                            <div class="settings-group">
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Two-Factor Auth</div>
+                                        <div class="settings-desc">Extra login security</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                                <div class="settings-row">
+                                    <div>
+                                        <div class="settings-label">Login Alerts</div>
+                                        <div class="settings-desc">Alert on new device login</div>
+                                    </div>
+                                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:16px;display:flex;gap:10px">
+                                <button class="btn btn-ghost"
+                                    onclick="showToast('Password reset email sent!','ti-mail')"><i
+                                        class="ti ti-key"></i> Change Password</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-title" style="margin-bottom:16px">Data & Storage</div>
+                            <div style="font-size:13px;color:var(--text2);margin-bottom:16px">
+                                LocalStorage usage: <strong id="storage-usage">calculating...</strong>
+                            </div>
+                            <div class="progress" style="margin-bottom:16px">
+                                <div class="progress-bar" id="storage-bar" style="width:0%;background:var(--accent)">
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:10px">
+                                <button class="btn btn-ghost" onclick="exportData()"><i class="ti ti-download"></i>
+                                    Export Data</button>
+                                <button class="btn btn-danger" onclick="clearAllData()"><i class="ti ti-trash"></i>
+                                    Clear All Data</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TOAST CONTAINER -->
+        <div class="toast-container" id="toast-container"></div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>
