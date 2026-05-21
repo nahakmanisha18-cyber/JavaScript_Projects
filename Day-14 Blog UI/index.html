@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>YRONEX - Futuristic Blog</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+
+        <div class="glow" id="glow"></div>
+
+        <!-- NAVBAR -->
+
+        <nav>
+
+            <div class="logo">
+                YRONEX
+            </div>
+
+            <div class="nav-links">
+
+                <a href="#">Home</a>
+
+                <a href="#" class="active">
+                    Blog
+                </a>
+
+                <a href="#">Articles</a>
+
+                <a href="#">Pricing</a>
+
+                <a href="#">About</a>
+
+                <a href="#">Contact</a>
+
+            </div>
+
+            <button class="nav-btn">
+                Get Started
+            </button>
+
+        </nav>
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+                    ⚡ NEXT GENERATION DIGITAL MAGAZINE
+                </div>
+
+                <h1 id="typingText"></h1>
+
+                <p>
+                    Explore premium articles about futuristic UI design,
+                    artificial intelligence, cybersecurity, digital finance,
+                    modern development, and immersive web experiences.
+                </p>
+
+                <div class="hero-btns">
+
+                    <button class="hero-btn primary">
+                        Explore Blogs
+                    </button>
+
+                    <button class="hero-btn secondary">
+                        Latest Articles
+                    </button>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="stat-box">
+                        <h2>120+</h2>
+                        <span>Premium Articles</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <h2>50K+</h2>
+                        <span>Monthly Readers</span>
+                    </div>
+
+                    <div class="stat-box">
+                        <h2>25+</h2>
+                        <span>Expert Writers</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- BLOG SECTION -->
+
+        <section class="section">
+
+            <h2 class="section-title">
+                Trending Articles
+            </h2>
+
+            <p class="section-sub">
+                Explore futuristic stories and immersive premium blogs.
+            </p>
+
+            <div class="filters">
+
+                <div class="tabs">
+
+                    <button class="tab active">
+                        All
+                    </button>
+
+                    <button class="tab">
+                        Technology
+                    </button>
+
+                    <button class="tab">
+                        Design
+                    </button>
+
+                    <button class="tab">
+                        Finance
+                    </button>
+
+                </div>
+
+                <input type="text" class="search" placeholder="Search articles...">
+
+            </div>
+
+            <!-- GRID -->
+
+            <div class="grid">
+
+                <!-- CARD -->
+
+                <div class="card large hidden">
+
+                    <div class="card-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+
+                        <div class="overlay"></div>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <div class="badge">
+                            Technology
+                        </div>
+
+                        <h2>
+                            AI Is Redefining The Future Of Digital Payments
+                        </h2>
+
+                        <p>
+                            Artificial intelligence is transforming finance,
+                            security, and modern digital experiences.
+                        </p>
+
+                        <div class="footer">
+
+                            <div class="author">
+
+                                <div class="avatar">
+                                    A
+                                </div>
+
+                                <div>
+                                    <h4>Admin</h4>
+                                    <small style="color:var(--muted)">
+                                        Dec 28, 2025
+                                    </small>
+                                </div>
+
+                            </div>
+
+                            <div class="arrow">
+                                ↗
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+
+                <div class="card small hidden">
+
+                    <div class="card-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop">
+
+                        <div class="overlay"></div>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <div class="badge">
+                            Finance
+                        </div>
+
+                        <h2>
+                            Master Your Budget Smarter
+                        </h2>
+
+                        <p>
+                            Simple strategies to improve your financial future.
+                        </p>
+
+                        <div class="footer">
+
+                            <div class="author">
+
+                                <div class="avatar">
+                                    B
+                                </div>
+
+                                <div>
+                                    <h4>Admin</h4>
+                                </div>
+
+                            </div>
+
+                            <div class="arrow">
+                                ↗
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+
+                <div class="card medium hidden">
+
+                    <div class="card-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop">
+
+                        <div class="overlay"></div>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <div class="badge">
+                            Design
+                        </div>
+
+                        <h2>
+                            Building Cinematic Web Experiences
+                        </h2>
+
+                        <p>
+                            Create premium futuristic interfaces with immersive design.
+                        </p>
+
+                        <div class="footer">
+
+                            <div class="author">
+
+                                <div class="avatar">
+                                    C
+                                </div>
+
+                                <div>
+                                    <h4>Admin</h4>
+                                </div>
+
+                            </div>
+
+                            <div class="arrow">
+                                ↗
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD -->
+
+                <div class="card medium hidden">
+
+                    <div class="card-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1200&auto=format&fit=crop">
+
+                        <div class="overlay"></div>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <div class="badge">
+                            Security
+                        </div>
+
+                        <h2>
+                            Cybersecurity In The AI Era
+                        </h2>
+
+                        <p>
+                            Understand how AI is changing online privacy and security.
+                        </p>
+
+                        <div class="footer">
+
+                            <div class="author">
+
+                                <div class="avatar">
+                                    D
+                                </div>
+
+                                <div>
+                                    <h4>Admin</h4>
+                                </div>
+
+                            </div>
+
+                            <div class="arrow">
+                                ↗
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- NEWSLETTER -->
+
+            <div class="newsletter hidden">
+
+                <h2>
+                    Join The Future Newsletter
+                </h2>
+
+                <p>
+                    Get premium insights about AI, futuristic design,
+                    technology trends, and immersive experiences.
+                </p>
+
+                <div class="news-form">
+
+                    <input type="email" placeholder="Enter your email">
+
+                    <button>
+                        Subscribe
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 YRONEX— Futuristic Blog Experience
+        </footer>
+
+        <script src="script.js"></script>
+
+    </body>
+
+</html>
